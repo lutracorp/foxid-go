@@ -10,7 +10,7 @@ import (
 
 var ErrInvalidFOxID = errors.New("invalid FOxID")
 
-type Builder struct {
+type Config struct {
 	Time       time.Time
 	Generator  uint32
 	Datacenter uint16
@@ -28,39 +28,39 @@ func Empty() (id FOxID) {
 }
 
 // Generate returns the new generated FOxID.
-func Generate(builder Builder) (id FOxID) {
-	if builder.Time == (time.Time{}) {
+func Generate(config Config) (id FOxID) {
+	if config.Time == (time.Time{}) {
 		id.SetTime(time.Now())
 	} else {
-		id.SetTime(builder.Time)
+		id.SetTime(config.Time)
 	}
 
-	if builder.Counter == 0 {
+	if config.Counter == 0 {
 		id.IncrementCounter()
 	} else {
-		id.SetCounter(builder.Counter)
+		id.SetCounter(config.Counter)
 	}
 
-	if builder.Random == 0 {
+	if config.Random == 0 {
 		id.GenerateRandom()
 	} else {
-		id.SetRandom(builder.Random)
+		id.SetRandom(config.Random)
 	}
 
-	if builder.Generator == 0 {
-		if builder.Datacenter == 0 {
+	if config.Generator == 0 {
+		if config.Datacenter == 0 {
 			id.SetDatacenter(datacenterOrRand())
 		} else {
-			id.SetDatacenter(builder.Datacenter)
+			id.SetDatacenter(config.Datacenter)
 		}
 
-		if builder.Worker == 0 {
+		if config.Worker == 0 {
 			id.SetWorker(workerOrPid())
 		} else {
-			id.SetWorker(builder.Worker)
+			id.SetWorker(config.Worker)
 		}
 	} else {
-		id.SetGenerator(builder.Generator)
+		id.SetGenerator(config.Generator)
 	}
 
 	return id

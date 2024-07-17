@@ -37,7 +37,7 @@ func TestInvalidParse(t *testing.T) {
 
 // Should generate FOxID with predefined variables
 func TestGenerate(t *testing.T) {
-	id := Generate(Builder{
+	id := Generate(Config{
 		Datacenter: 10,
 		Worker:     20,
 		Counter:    30,
