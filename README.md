@@ -4,7 +4,7 @@
 
 <p align="center"> Unique object identifier format with the possibility of lexicographic sorting.
     <br>
-    A Go implementation of <a href="https://github.com/lutracorp/foxid">FOxID</a> created by <a href="https://github.com/kasefuchs">Kasefuchs</a> and <a href="https://github.com/dajeo">dajeo</a>.
+    A Go implementation of <a href="https://github.com/lutracorp/foxid">FOxID</a> created by <a href="https://github.com/kasefuchs">Kasefuchs</a> and <a href="https://github.com/krabiworld">Daniel</a>.
     <br> 
 </p>
 
