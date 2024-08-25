@@ -31,12 +31,12 @@ Go: >=1.22
 ### Installing
 
 ```shell
-$ go get -u github.com/dajeo/foxid-go
+$ go get -u github.com/lutracorp/foxid-go
 ```
 
 ## 🎈 Usage <a name="usage"></a>
 
-Usage examples can be found on [GitHub](https://github.com/dajeo/foxid-go/tree/main/example). Reference [pkg.go.dev](https://pkg.go.dev/github.com/dajeo/foxid-go).
+Usage examples can be found on [GitHub](https://github.com/lutracorp/foxid-go/tree/main/example). Reference [pkg.go.dev](https://pkg.go.dev/github.com/lutracorp/foxid-go).
 
 ## 📑 Specification <a name = "specification"></a>
 

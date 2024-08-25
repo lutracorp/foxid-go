@@ -1,4 +1,4 @@
-module github.com/dajeo/foxid-go
+module github.com/lutracorp/foxid-go
 
 go 1.22
 
