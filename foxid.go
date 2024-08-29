@@ -28,39 +28,45 @@ func Empty() (id FOxID) {
 }
 
 // Generate returns the new generated FOxID.
-func Generate(config Config) (id FOxID) {
-	if config.Time == (time.Time{}) {
+func Generate(config ...Config) (id FOxID) {
+	if len(config) == 0 {
+		config = []Config{{}}
+	}
+
+	cfg := config[0]
+
+	if cfg.Time == (time.Time{}) {
 		id.SetTime(time.Now())
 	} else {
-		id.SetTime(config.Time)
+		id.SetTime(cfg.Time)
 	}
 
-	if config.Counter == 0 {
+	if cfg.Counter == 0 {
 		id.IncrementCounter()
 	} else {
-		id.SetCounter(config.Counter)
+		id.SetCounter(cfg.Counter)
 	}
 
-	if config.Random == 0 {
+	if cfg.Random == 0 {
 		id.GenerateRandom()
 	} else {
-		id.SetRandom(config.Random)
+		id.SetRandom(cfg.Random)
 	}
 
-	if config.Generator == 0 {
-		if config.Datacenter == 0 {
+	if cfg.Generator == 0 {
+		if cfg.Datacenter == 0 {
 			id.SetDatacenter(datacenterOrRand())
 		} else {
-			id.SetDatacenter(config.Datacenter)
+			id.SetDatacenter(cfg.Datacenter)
 		}
 
-		if config.Worker == 0 {
+		if cfg.Worker == 0 {
 			id.SetWorker(workerOrPid())
 		} else {
-			id.SetWorker(config.Worker)
+			id.SetWorker(cfg.Worker)
 		}
 	} else {
-		id.SetGenerator(config.Generator)
+		id.SetGenerator(cfg.Generator)
 	}
 
 	return id
