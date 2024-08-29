@@ -9,7 +9,7 @@ import (
 //goland:noinspection SpellCheckingInspection
 func main() {
 	// Generating FOxID
-	generatedFoxid := foxid.Generate(foxid.Config{})
+	generatedFoxid := foxid.Generate()
 
 	// Getting data from it
 	fmt.Println(generatedFoxid.Time())       // <-- UTC DateTime
