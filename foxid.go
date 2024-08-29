@@ -1,14 +1,21 @@
 package foxid
 
 import (
+	"encoding/base32"
 	"errors"
-	"github.com/carlmjohnson/crockford"
 	"math/rand"
 	"strings"
 	"time"
 )
 
-var ErrInvalidFOxID = errors.New("invalid FOxID")
+const (
+	uppercaseAlphabet = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
+)
+
+var (
+	encoder         = base32.NewEncoding(uppercaseAlphabet).WithPadding(base32.NoPadding)
+	ErrInvalidFOxID = errors.New("invalid FOxID")
+)
 
 type Config struct {
 	Time       time.Time
@@ -74,8 +81,7 @@ func Generate(config ...Config) (id FOxID) {
 
 // Parse parses FOxID from its string representation.
 func Parse(s string) (id *FOxID, err error) {
-	upperString := strings.ToUpper(s)
-	decodeString, err := crockford.Upper.DecodeString(upperString)
+	decodeString, err := encoder.DecodeString(strings.ToUpper(s))
 	if err != nil || len(decodeString) != 16 {
 		return nil, ErrInvalidFOxID
 	}
@@ -184,5 +190,5 @@ func (id *FOxID) Bytes() []byte {
 
 // String returns a lexicographically sortable string encoded FOxID.
 func (id *FOxID) String() string {
-	return crockford.Upper.EncodeToString(id.Bytes())
+	return encoder.EncodeToString(id.Bytes())
 }
